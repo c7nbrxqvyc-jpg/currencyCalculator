@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Валутен калкулатор</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  
+  <div class="card">
+    <h1 id="title1">Валутен калкулатор</h1>
+    <label for="amt">Сума</label>
+    <input id="amt" type="number" inputmode="decimal" value="100" min="0" step="any">
+
+    <span class="lbl">От</span>
+    <button id="fromBtn" class="pick" type="button" aria-haspopup="dialog"></button>
+
+    <div class="swap"><button id="swap" type="button" aria-label="Размени валутите">⇅</button></div>
+
+    <span class="lbl">Към</span>
+    <button id="toBtn" class="pick" type="button" aria-haspopup="dialog"></button>
+
+    <div class="out">
+      <div class="big" id="res" aria-live="polite">—</div>
+      <div class="rate" id="rate"></div>
+    </div>
+
+    <p class="meta" id="meta"></p>
+    <button id="ratesBtn" class="link" type="button">Курсове</button>
+  </div>
+  <p class="attr"><a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates By Exchange Rate API</a></p>
+</main>
+
+<dialog id="picker" aria-label="Избор на валута">
+  <div class="dhead">
+    <input id="q" type="search" placeholder="Държава, валута или код" autocomplete="off" aria-label="Търсене">
+    <button class="link" type="button" data-close>Отказ</button>
+  </div>
+  <ul id="list" class="list"></ul>
+  <p id="empty" class="empty" hidden>Няма резултати</p>
+</dialog>
+
+<dialog id="ratesDlg" aria-label="Курсове">
+  <div class="dhead">
+    <input id="rq" type="search" placeholder="Валута или код" autocomplete="off" aria-label="Търсене на валута">
+    <button class="link" type="button" data-close>Готово</button>
+  </div>
+  <div class="actions">
+    <button class="link" id="refresh" type="button">Обнови от интернет</button>
+    <button class="link danger" id="reset" type="button">Върни началните</button>
+  </div>
+  <p class="note">Стойности за 1 EUR. Празно поле означава, че курсът още не е зареден.</p>
+  <ul id="rlist" class="list"></ul>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
