@@ -114,11 +114,24 @@
     $('meta').textContent = m;
   }
 
-  // ---- обновяване от API ----
-  function refresh() {
+    // ---- обновяване от API ----
+  var MAX_AGE = 60 * 60 * 1000;    // за 24 часа: 24 * 60 * 60 * 1000
+  var RETRY_AFTER = 5 * 60 * 1000;
+  var lastTry = 0;
+
+  function refresh(force) {
+    var now = Date.now();
+    if (!force) {
+      if (updatedAt && now - updatedAt < MAX_AGE) { showMeta(); return Promise.resolve(); }
+      if (now - lastTry < RETRY_AFTER) { showMeta(); return Promise.resolve(); }
+    }
+    lastTry = now;
     showMeta('Обновявам курсовете…');
     return fetch('https://open.er-api.com/v6/latest/EUR')
-      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
       .then(function (d) {
         if (d.result !== 'success' || !d.rates) throw new Error('bad response');
         Object.keys(d.rates).forEach(function (k) { if (d.rates[k] > 0) rates[k] = d.rates[k]; });
@@ -127,7 +140,11 @@
         saveRates();
         calc(); showMeta(); renderRates();
       })
-      .catch(function () { showMeta(updatedAt ? null : 'Няма връзка. Ползват се начални курсове.'); if (updatedAt) showMeta('Няма връзка. Ползват се последните запазени курсове.'); });
+      .catch(function () {
+        showMeta(updatedAt
+          ? 'Няма връзка. Ползват се последните запазени курсове.'
+          : 'Няма връзка. Ползват се начални курсове.');
+      });
   }
 
   // ---- избор на държава ----
@@ -188,7 +205,7 @@
   $('q').addEventListener('input', renderPicker);
   $('rq').addEventListener('input', renderRates);
   $('ratesBtn').addEventListener('click', function () { $('rq').value = ''; $('ratesDlg').showModal(); renderRates(); });
-  $('refresh').addEventListener('click', refresh);
+  $('refresh').addEventListener('click', function () { refresh(true); });
   $('reset').addEventListener('click', function () {
     rates = Object.assign({}, FALLBACK); updatedAt = null;
     store('valuten-rates', null); store('valuten-updated', null);
@@ -201,5 +218,5 @@
     $(id).addEventListener('click', function (e) { if (e.target === $(id)) $(id).close(); });
   });
 
-  calc(); showMeta(); refresh();
+  calc(); showMeta(); refresh(false);
 })();
