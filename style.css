@@ -58,3 +58,6 @@ dialog{height:min(85vh,640px)}
 input, select, textarea {
   font-size: 16px;
 }
+#q::placeholder {
+  color: #ffffff;
+}
