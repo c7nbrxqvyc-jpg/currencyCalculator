@@ -4,7 +4,7 @@
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;display:flex;justify-content:center;padding:max(24px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom))}
 main{width:100%;max-width:460px}
 h1{font-size:1.5rem;font-weight:800;margin:0 0 16px;letter-spacing:-.01em}
-.card{background-color: #26b6eb;border:1px solid var(--line);border-radius:58px;padding:20px; border-color: #ffffff;border-width: 6px;}
+.card{background-color: #2db3e3;border:1px solid var(--line);border-radius:58px;padding:20px; border-color: #ffffff;border-width: 6px;}
 label,.lbl{display:block;font-size:1.2rem;color:white;margin:0 0 6px;font-weight: bold;display: flex; justify-content: center;}
 .lbl{margin-top:14px;color: white; font-weight: bold; font-size: 1.2rem;}
 input{
@@ -30,9 +30,9 @@ button{font:inherit;cursor:pointer;color:inherit}
 .swap{display:flex;justify-content:center;margin:14px 0 0}
 #swap{background:var(--acc);color:var(--accInk);border:0;border-radius:999px;width:44px;height:44px;font-size:1.3rem;font-weight:800}
 .out{margin-top:18px;padding-top:18px;border-top:1px dashed var(--line)}
-.big{font-size:2.4rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;word-break:break-word}
-.rate{color:var(--mute);margin-top:8px;font-size:.9rem}
-.meta{color:var(--mute);font-size:.8rem;margin:16px 0 4px}
+.big{font-size:2.4rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;word-break:break-word; position: relative; justify-content: center; display: flex; gap: 10px;color: rgb(255, 255, 255); background-color: #14be3f;border-radius: 20px;}
+.rate{color:var(--mute);margin-top:8px;font-size:.9rem; position: relative; justify-content: center; display: flex; gap: 10px;color: rgb(255, 255, 255);}
+.meta{color:var(--mute);font-size:.8rem;margin:16px 0 4px; display: flex; justify-content: center; color: rgb(255, 255, 255);}
 .link{background:none;border:0;padding:6px 0;color:var(--acc);font-weight:600}
 .link.danger{color:var(--danger)}
 .attr{text-align:center;font-size:.8rem;margin:16px 0 0}
@@ -55,3 +55,4 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
 #title1{color: white; text-align: center; font-size: 2rem; margin-bottom: 20px; }
 dialog{height:min(85vh,640px)}
 .list{min-height:0;flex:1;overflow-y:auto}
+
