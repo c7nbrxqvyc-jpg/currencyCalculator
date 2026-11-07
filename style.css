@@ -30,7 +30,7 @@ button{font:inherit;cursor:pointer;color:inherit}
 .swap{display:flex;justify-content:center;margin:14px 0 0}
 #swap{background:var(--acc);color:var(--accInk);border:0;border-radius:999px;width:44px;height:44px;font-size:1.3rem;font-weight:800}
 .out{margin-top:18px;padding-top:18px;border-top:1px dashed var(--line)}
-.big{font-size:2.4rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;word-break:break-word; position: relative; justify-content: center; display: flex; gap: 10px;color: rgb(255, 255, 255); background-color: #14be3f;border-radius: 20px;}
+.big{font-size:2.4rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;word-break:break-word; position: relative; justify-content: center; display: flex; gap: 10px;color: rgb(255, 255, 255); background-color: #14be3f;border-radius: 20px;border-style: dashed;}
 .rate{color:var(--mute);margin-top:8px;font-size:.9rem; position: relative; justify-content: center; display: flex; gap: 10px;color: rgb(255, 255, 255);}
 .meta{color:var(--mute);font-size:.8rem;margin:16px 0 4px; display: flex; justify-content: center; color: rgb(255, 255, 255);}
 .link{background:none;border:0;padding:6px 0;color:var(--acc);font-weight:600}
